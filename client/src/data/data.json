@@ -1,0 +1,29 @@
+[
+  {
+    "image": "images/Athens_Slate-Grey_Float.png",
+    "name": "Athens Gray Shoes",
+    "brand": "Athens",
+    "category": "Mens Shoes",
+    "price": 120,
+    "stock": "20",
+    "id": "123"
+  },
+  {
+    "image": "images/panzy.webp",
+    "name": "Shy Guys",
+    "brand": "Athens",
+    "category": "Mens Shoes",
+    "price": 120,
+    "stock": "20",
+    "id": "1234"
+  },
+  {
+    "image": "images/sky.jpeg",
+    "name": "pies",
+    "brand": "Athens",
+    "category": "Mens Shoes",
+    "price": 120,
+    "stock": "20",
+    "id": "12345"
+  }
+]
