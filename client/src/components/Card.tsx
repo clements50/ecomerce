@@ -9,7 +9,7 @@ type Props = {
 
 const Card = ({ name, price, id, image }: Props) => {
   return (
-    <Link to={`/shop/item/${id}`}>
+    <Link to={`/shop/items/${id}`}>
       <div className="px-4 w-40 lg:w-56">
         <img src={image} className="w-full h-36 object-cover mb-4 lg:h-36" />
         <p>

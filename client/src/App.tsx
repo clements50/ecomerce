@@ -1,6 +1,11 @@
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import data from "./data/data.json";
 import { Outlet } from "react-router-dom";
+
+export const loader = () => {
+  return data;
+};
 
 function App() {
   return (

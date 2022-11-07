@@ -1,10 +1,12 @@
 import Card from "../components/Card";
-import ShopItems from "../data/data.json";
+import { useRouteLoaderData } from "react-router-dom";
 
 const Shop = () => {
+  const items: ShopItem[] = useRouteLoaderData("root") as ShopItem[];
+
   return (
     <div className="grid grid-cols-2 w-fit gap-4 py-8 m-auto md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5">
-      {ShopItems.map((item) => {
+      {items.map((item) => {
         return (
           <Card
             key={item.id}

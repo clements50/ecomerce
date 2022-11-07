@@ -16,7 +16,11 @@ const Header = () => {
           setNavMenuActive={navMenuHandler}
         />
         <p className="text-white text-2xl">Logo</p>
-        <Nav navMenuActive={navMenuActive} />
+        <Nav
+          navMenuActive={navMenuActive}
+          setNavMenuActive={setNavMenuActive}
+        />
+        <p className="text-white text-lg">({0}) Cart</p>
       </div>
     </header>
   );
