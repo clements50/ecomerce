@@ -10,12 +10,12 @@ type Props = {
 const Card = ({ name, price, id, image }: Props) => {
   return (
     <Link to={`/shop/item/${id}`}>
-      <div className="px-4 max-h-80 w-40 lg:w-56">
+      <div className="px-4 w-40 lg:w-56">
         <img src={image} className="w-full h-36 object-cover mb-4 lg:h-36" />
-        <p>{name}</p>
-        <p className="text-violet-700">
-          <strong>{price}</strong>
+        <p>
+          <strong>{name}</strong>
         </p>
+        <p className="text-violet-700">${price}</p>
       </div>
     </Link>
   );
