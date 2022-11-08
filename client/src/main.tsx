@@ -20,7 +20,7 @@ const router = createBrowserRouter([
         element: <Shop />,
       },
       {
-        path: "htts://ecomerce-one.vercel.app/shop/items/:id",
+        path: "/shop/items/:id",
         element: <ItemPage />,
         loader: ItemLoader,
       },
