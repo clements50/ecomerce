@@ -8,7 +8,7 @@ type Props = {
 const Nav = ({ navMenuActive, setNavMenuActive }: Props) => {
   return (
     <nav
-      className={`absolute bg-zinc-800 top-16 h-screen w-screen left-0  lg:bg-zinc-800 lg:static lg:h-fit lg:w-fit ease-out duration-500 
+      className={` absolute bg-zinc-800 top-16 w-screen h-screen left-0 lg:bg-zinc-800 lg:static lg:h-fit lg:w-fit ease-out duration-500 
           ${!navMenuActive && "-left-full"}`}
     >
       <ul className="flex flex-col items-center gap-3 py-8 lg:flex-row lg:py-0">
