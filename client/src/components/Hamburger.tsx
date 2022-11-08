@@ -1,15 +1,15 @@
 type Props = {
   navMenuActive: boolean;
-  setNavMenuActive: () => void;
+  navMenuHandler: () => void;
 };
 
-const Hamburger = ({ navMenuActive, setNavMenuActive }: Props) => {
+const Hamburger = ({ navMenuActive, navMenuHandler }: Props) => {
   return (
     <div
       className={`relative h-7 w-8 cursor-pointer ease-in-out duration-500 delay-100 lg:hidden ${
         navMenuActive && "rotate-180"
       }`}
-      onClick={setNavMenuActive}
+      onClick={navMenuHandler}
     >
       <div
         className={`absolute w-full h-1 bg-white top-0.5 ease-out duration-500 ${
