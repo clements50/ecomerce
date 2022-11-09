@@ -15,14 +15,18 @@ const ShoppingCart = ({ cartOpen, cartCloseHandler }: Props) => {
       ></div>
       <div
         className={`bg-white right-0 h-screen w-11/12 transition-transform duration-300 ease-in fixed 
-        lg:w-1/4 px-6 py-8 ${!cartOpen && "translate-x-full"} `}
+         px-6 py-8 flex flex-col lg:w-1/4 md:w-2/4 ${
+           !cartOpen && "translate-x-full"
+         } `}
       >
         <div className="flex justify-between mb-4">
           <p className="font-semibold text-xl">Shopping Cart</p>
-          <div onClick={() => cartCloseHandler()}>Close</div>
+          <div onClick={() => cartCloseHandler()} className="text-gray-500">
+            Close
+          </div>
         </div>
-        <div className="overflow-scroll h-80 border-2 border-violet-400">
-          <p className="font-semibold text-lg">Subtotal</p>
+        <div className="overflow-scroll flex-grow">
+          <p className=" text-gray-500 m-auto w-fit">Your Cart Is Empty...</p>
         </div>
         <div className="mt-8">
           <div className="flex justify-between">
@@ -35,7 +39,10 @@ const ShoppingCart = ({ cartOpen, cartCloseHandler }: Props) => {
           <button className="bg-blue-700 text-white p-3 w-full rounded-md mb-5">
             Checkout
           </button>
-          <div className="flex gap-1 w-fit m-auto">
+          <div
+            className="flex gap-1 w-fit m-auto cursor-pointer"
+            onClick={() => cartCloseHandler()}
+          >
             <p className="text-gray-500">or</p>
             <p className="text-blue-700">Continue Shopping &rarr;</p>
           </div>
