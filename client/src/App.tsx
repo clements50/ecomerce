@@ -23,7 +23,7 @@ function App() {
   };
 
   return (
-    <div className="relative overflow-hidden">
+    <>
       <Header
         cartOpen={cartOpen}
         cartCloseHandler={cartCloseHandler}
@@ -35,7 +35,7 @@ function App() {
         <Outlet />
       </main>
       <Footer />
-    </div>
+    </>
   );
 }
 
