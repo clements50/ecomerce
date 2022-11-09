@@ -10,12 +10,7 @@ type Props = {
   navMenuActive: boolean;
 };
 
-const Header = ({
-  cartOpen,
-  cartCloseHandler,
-  navMenuHandler,
-  navMenuActive,
-}: Props) => {
+const Header = ({ cartCloseHandler, navMenuHandler, navMenuActive }: Props) => {
   const [visible] = NavScroll();
 
   return (
@@ -29,7 +24,7 @@ const Header = ({
           navMenuActive={navMenuActive}
           navMenuHandler={navMenuHandler}
         />
-        <p className="text-white text-2xl">Logo</p>
+        <p className="text-white text-lg">Logo</p>
         <Nav navMenuActive={navMenuActive} navMenuHandler={navMenuHandler} />
         <div
           className="text-white text-lg cursor-pointer"

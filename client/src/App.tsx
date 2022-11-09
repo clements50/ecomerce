@@ -31,7 +31,7 @@ function App() {
         navMenuActive={navMenuActive}
       />
       <ShoppingCart cartOpen={cartOpen} cartCloseHandler={cartCloseHandler} />
-      <main className="bg-gray-200 min-h-screen py-16">
+      <main className="min-h-screen py-16">
         <Outlet />
       </main>
       <Footer />
