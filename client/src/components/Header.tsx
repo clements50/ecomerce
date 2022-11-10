@@ -1,17 +1,17 @@
-import { useState } from "react";
+import { useContext } from "react";
 import Hamburger from "./Hamburger";
 import Nav from "./Nav";
-import NavScroll from "../hooks/Scroll";
+import { CartContext } from "../context/cartContext";
+import scrollHook from "../hooks/Scroll";
 
 type Props = {
-  cartOpen: boolean;
-  cartCloseHandler: () => void;
   navMenuHandler: () => void;
   navMenuActive: boolean;
 };
 
-const Header = ({ cartCloseHandler, navMenuHandler, navMenuActive }: Props) => {
-  const [visible] = NavScroll();
+const Header = ({ navMenuHandler, navMenuActive }: Props) => {
+  const [visible] = scrollHook();
+  const { toggleCartHandler } = useContext(CartContext);
 
   return (
     <header
@@ -28,7 +28,7 @@ const Header = ({ cartCloseHandler, navMenuHandler, navMenuActive }: Props) => {
         <Nav navMenuActive={navMenuActive} navMenuHandler={navMenuHandler} />
         <div
           className="text-white text-lg cursor-pointer"
-          onClick={() => cartCloseHandler()}
+          onClick={() => toggleCartHandler()}
         >
           ({0}) Cart
         </div>

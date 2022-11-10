@@ -8,8 +8,8 @@ type Props = {
 const Nav = ({ navMenuActive, navMenuHandler }: Props) => {
   return (
     <nav
-      className={` absolute bg-zinc-800 top-16 w-screen h-screen -left-full lg:bg-zinc-800 lg:static lg:h-fit lg:w-fit ease-out duration-500 
-          ${navMenuActive && "left-0"}`}
+      className={` absolute bg-zinc-800 top-16 w-screen h-screen -left-full lg:bg-zinc-800 lg:static
+      lg:h-fit lg:w-fit ease-out duration-500 ${navMenuActive && "left-0"}`}
     >
       <ul className="flex flex-col items-center gap-3 py-8 lg:flex-row lg:py-0">
         <Link

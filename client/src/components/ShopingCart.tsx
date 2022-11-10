@@ -1,12 +1,9 @@
-import { Link } from "react-router-dom";
-import OrderSummary from "./OrderSummary";
+import { useContext } from "react";
+import { CartContext } from "../context/cartContext";
 
-type Props = {
-  cartOpen: boolean;
-  cartCloseHandler: () => void;
-};
+const ShoppingCart = () => {
+  const { cartOpen, toggleCartHandler } = useContext(CartContext);
 
-const ShoppingCart = ({ cartOpen, cartCloseHandler }: Props) => {
   return (
     <>
       <div
@@ -21,7 +18,10 @@ const ShoppingCart = ({ cartOpen, cartCloseHandler }: Props) => {
       >
         <div className="flex justify-between mb-4">
           <p className="font-semibold text-xl">Shopping Cart</p>
-          <div onClick={() => cartCloseHandler()} className="text-gray-500">
+          <div
+            onClick={() => toggleCartHandler()}
+            className="text-gray-500 cursor-pointer"
+          >
             Close
           </div>
         </div>
@@ -41,7 +41,7 @@ const ShoppingCart = ({ cartOpen, cartCloseHandler }: Props) => {
           </button>
           <div
             className="flex gap-1 w-fit m-auto cursor-pointer"
-            onClick={() => cartCloseHandler()}
+            onClick={() => toggleCartHandler()}
           >
             <p className="text-gray-500">or</p>
             <p className="text-blue-700">Continue Shopping &rarr;</p>

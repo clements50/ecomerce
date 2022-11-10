@@ -10,27 +10,15 @@ export const loader = () => {
 };
 
 function App() {
-  const [cartOpen, setCartOpen] = useState(false);
   const [navMenuActive, setNavMenuActive] = useState<boolean>(false);
 
   const navMenuHandler = () =>
-    !navMenuActive && !cartOpen
-      ? setNavMenuActive(true)
-      : setNavMenuActive(false);
-
-  const cartCloseHandler = () => {
-    !cartOpen && !navMenuActive ? setCartOpen(true) : setCartOpen(false);
-  };
+    !navMenuActive ? setNavMenuActive(true) : setNavMenuActive(false);
 
   return (
     <>
-      <Header
-        cartOpen={cartOpen}
-        cartCloseHandler={cartCloseHandler}
-        navMenuHandler={navMenuHandler}
-        navMenuActive={navMenuActive}
-      />
-      <ShoppingCart cartOpen={cartOpen} cartCloseHandler={cartCloseHandler} />
+      <Header navMenuHandler={navMenuHandler} navMenuActive={navMenuActive} />
+      <ShoppingCart />
       <main className="min-h-screen py-16">
         <Outlet />
       </main>

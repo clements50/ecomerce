@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const ScrollHook = () => {
+const scrollHook = () => {
   const [prevScroll, setPrevScroll] = useState(0);
   const [visible, setVisible] = useState(true);
 
@@ -20,4 +20,4 @@ const ScrollHook = () => {
   return [visible];
 };
 
-export default ScrollHook;
+export default scrollHook;

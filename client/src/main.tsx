@@ -4,6 +4,7 @@ import App, { loader as Root } from "./App";
 import Shop from "./pages/Shop";
 import ItemPage, { loader as ItemLoader } from "./pages/ItemPage";
 import Error from "./pages/Error";
+import CartContextProvider from "./context/cartContext";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 //fsafj
@@ -31,6 +32,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <CartContextProvider>
+      <RouterProvider router={router} />
+    </CartContextProvider>
   </React.StrictMode>
 );
