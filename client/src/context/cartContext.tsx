@@ -6,7 +6,7 @@ type Props = {
 
 type CartToggleContext = {
   cartOpen: boolean;
-  toggleCartHandler: () => void;
+  toggleCart: () => void;
 };
 
 export const CartContext = createContext({} as CartToggleContext);
@@ -14,13 +14,13 @@ export const CartContext = createContext({} as CartToggleContext);
 const CartContextProvider = ({ children }: Props) => {
   const [cartOpen, setCartOpen] = useState<boolean>(false);
 
-  const toggleCartHandler = (): void => {
+  const toggleCart = (): void => {
     setCartOpen((cartOpen) => !cartOpen);
   };
 
   return (
     <>
-      <CartContext.Provider value={{ cartOpen, toggleCartHandler }}>
+      <CartContext.Provider value={{ cartOpen, toggleCart }}>
         {children}
       </CartContext.Provider>
     </>

@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 
 type Props = {
   navMenuActive: boolean;
-  navMenuHandler: () => void;
+  navMenuToggle: () => void;
 };
 
-const Nav = ({ navMenuActive, navMenuHandler }: Props) => {
+const Nav = ({ navMenuActive, navMenuToggle }: Props) => {
   return (
     <nav
       className={` absolute bg-zinc-800 top-16 w-screen h-screen -left-full lg:bg-zinc-800 lg:static
@@ -14,22 +14,22 @@ const Nav = ({ navMenuActive, navMenuHandler }: Props) => {
       <ul className="flex flex-col items-center gap-3 py-8 lg:flex-row lg:py-0">
         <Link
           to="/"
-          className="text-zinc-300 text-3xl left-10 lg:text-lg"
-          onClick={() => navMenuHandler()}
+          className="text-zinc-300 text-3xl left-10 lg:text-xl"
+          onClick={() => navMenuToggle()}
         >
           Home
         </Link>
         <Link
           to="/"
-          className="text-zinc-300 text-3xl lg:text-lg"
-          onClick={() => navMenuHandler()}
+          className="text-zinc-300 text-3xl lg:text-xl"
+          onClick={() => navMenuToggle()}
         >
           Shop
         </Link>
         <Link
           to="/"
-          onClick={() => navMenuHandler()}
-          className="text-gray-300 text-3xl lg:text-lg"
+          onClick={() => navMenuToggle()}
+          className="text-gray-300 text-3xl lg:text-xl"
         >
           About
         </Link>

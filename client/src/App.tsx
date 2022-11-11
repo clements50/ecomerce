@@ -12,12 +12,13 @@ export const loader = () => {
 function App() {
   const [navMenuActive, setNavMenuActive] = useState<boolean>(false);
 
-  const navMenuHandler = () =>
+  const navMenuToggle = () => {
     !navMenuActive ? setNavMenuActive(true) : setNavMenuActive(false);
+  };
 
   return (
     <>
-      <Header navMenuHandler={navMenuHandler} navMenuActive={navMenuActive} />
+      <Header navMenuToggle={navMenuToggle} navMenuActive={navMenuActive} />
       <ShoppingCart />
       <main className="min-h-screen py-16">
         <Outlet />
