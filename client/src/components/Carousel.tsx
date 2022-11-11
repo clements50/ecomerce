@@ -14,7 +14,7 @@ const Carousel = ({ children }: CarouselProps) => {
       if (!paused) {
         dispatch({ type: "increment", payload: children });
       }
-    }, 5000);
+    }, 2000);
 
     return () => {
       if (interval) {
@@ -26,27 +26,33 @@ const Carousel = ({ children }: CarouselProps) => {
   return (
     <>
       <div
-        className=" h-[50vh] overflow-hidden  mb-16 relative"
+        className=" h-[30vh] lg:h-[50vh] overflow-hidden  mb-8 relative"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
       >
         <div
-          className={`w-full h-full bg-gray-40 duration-500 ease-in 
-          flex -translate-x-[${index * 100}%]`}
+          className={`w-full h-full bg-gray-40 duration-1000 ease-in 
+          flex ${
+            index === 0
+              ? "-translate-x-0"
+              : index === 1
+              ? "-translate-x-full"
+              : "-translate-x-[200%]"
+          }`}
         >
           {children}
         </div>
         <button
-          className=" text-3xl absolute top-1/2 right-8 bg-gray-500"
+          className=" text-2xl absolute top-1/2 right-4 bg-gray-100 rounded-full h-8 w-8"
           onClick={() => dispatch({ type: "increment", payload: children })}
         >
-          inc
+          &rarr;
         </button>
         <button
-          className="absolute text-2xl left-8 top-1/2 bg-gray-500 "
+          className="absolute text-2xl left-4 top-1/2 bg-gray-100 rounded-full h-8 w-8 "
           onClick={() => dispatch({ type: "decrement", payload: children })}
         >
-          dec
+          &larr;
         </button>
       </div>
     </>
