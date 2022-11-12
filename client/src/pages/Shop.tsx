@@ -10,23 +10,20 @@ const Shop = () => {
     <>
       <Carousel>
         <CarouselItem>
-          <div className="bg-[url('images/sky.jpeg')] flex items-center justify-center border-gradient-to-r from-red-100 to-blue-50 bg-cover h-full w-full">
-            <p className="text-white text-3xl lg:text-6xl lg:w-auto w-60 font-semibold">
+          <div className="bg-hero-pattern flex items-center justify-center bg-cover h-full w-full">
+            <p className="text-white text-3xl lg:text-6xl lg:w-auto w-60">
               Shop And Checkout Our Best Products Today
             </p>
           </div>
         </CarouselItem>
         <CarouselItem>
           <img
-            src="../../public/images/Athens_Slate-Grey_Float.png"
+            src="images/blackshoes.jpg"
             className="h-full w-full object-cover"
           />
         </CarouselItem>
         <CarouselItem>
-          <img
-            src="../../public/images/camera.jpg"
-            className="h-full w-full object-contain "
-          />
+          <img src="images/camera.jpg" className="h-full w-full object-cover" />
         </CarouselItem>
       </Carousel>
       <p className="text-center text-4xl mb-4 font-semibold">Shop</p>

@@ -6,6 +6,10 @@ module.exports = {
       backgroundColor: {
         "rgb-black": "rgba(0, 0, 0, 0.75)",
       },
+      backgroundImage: {
+        "hero-pattern":
+          "linear-gradient(to right bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('/images/sky.jpeg')",
+      },
     },
   },
   plugins: [],
