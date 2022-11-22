@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App, { loader as Root } from "./App";
 import Shop from "./pages/Shop";
-import ItemPage, { loader as ItemLoader } from "./pages/ItemPage";
+import ItemPage from "./pages/ItemPage";
 import Error from "./pages/Error";
 import CartContextProvider from "./context/cartContext";
 import "./index.css";
@@ -24,7 +24,6 @@ const router = createBrowserRouter([
       {
         path: "/shop/items/:id",
         element: <ItemPage />,
-        loader: ItemLoader,
       },
     ],
   },
