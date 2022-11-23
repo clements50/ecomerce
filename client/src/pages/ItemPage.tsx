@@ -11,7 +11,7 @@ const ItemPage = () => {
   return (
     <div className="py-8 px-7 flex flex-wrap gap-8 lg:px-32 lg:flex-nowrap lg:justify-center">
       <img
-        src={"../../public/" + item.image}
+        src={"/" + item.image}
         className="w-full lg:w-[600px] lg:h-[550px] object-cover rounded-md"
       />
       <div className="lg:w-1/2">
