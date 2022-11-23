@@ -11,7 +11,7 @@ const ShoppingCart = () => {
         ${cartOpen ? "opacity-75 left-0" : "left-full"} `}
       ></div>
       <div
-        className={`bg-white right-0 z-10 h-screen w-11/12 transition-transform duration-300 ease-in fixed 
+        className={`bg-white right-0 z-20 h-screen w-11/12 transition-transform duration-300 ease-in fixed 
          px-6 py-8 flex flex-col lg:w-1/4 md:w-2/4 ${
            !cartOpen && "translate-x-full"
          } `}

@@ -8,13 +8,14 @@
       "thumbnail": "/images/blackenkie1.png",
       "images": [
         "/images/blackenkie1.png",
-        "/images/blacknike2",
-        "/images/blacknike3",
-        "/images/blacknike4"
+        "/images/blacknike2.png",
+        "/images/blacknike3.png",
+        "/images/blacknike4.png"
       ]
     },
+    "sizes": ["8", "9", "10", "13"],
     "category": "Mens Shoes",
     "stock": "20",
-    "id": "blacknike"
+    "id": "blacknike1"
   }
 ]
