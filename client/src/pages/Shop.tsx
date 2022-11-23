@@ -33,7 +33,7 @@ const Shop = () => {
             <Card
               key={item.id}
               name={item.name}
-              image={item.image}
+              thumbnail={item.images.thumbnail}
               price={item.price}
               id={item.id}
             />

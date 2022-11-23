@@ -1,7 +1,7 @@
 /// <reference types="vite/client" />
 //
 type ShopItem = {
-  image: string;
+  images: { thumbnail: string; images: string[] };
   name: string;
   brand: string;
   category: string;
