@@ -8,4 +8,5 @@ type ShopItem = {
   id: string;
   price: number;
   stock: string;
+  description: string;
 };
