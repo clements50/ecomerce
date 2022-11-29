@@ -13,7 +13,10 @@
         "/images/blacknike4.png"
       ]
     },
-    "sizes": ["8", "9", "10", "13"],
+    "varients": [
+      { "size": "8", "stock": 0 },
+      { "size": "9", "stock": 2 }
+    ],
     "category": "Mens Shoes",
     "stock": "20",
     "id": "blacknike1"

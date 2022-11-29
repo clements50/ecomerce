@@ -1,5 +1,12 @@
 /// <reference types="vite/client" />
 //
+//
+//
+type Varient = {
+  size: string;
+  stock: number;
+};
+
 type ShopItem = {
   images: { thumbnail: string; images: string[] };
   name: string;
@@ -9,5 +16,5 @@ type ShopItem = {
   price: number;
   stock: string;
   description: string;
-  sizes: string[];
+  varients: Varient[];
 };

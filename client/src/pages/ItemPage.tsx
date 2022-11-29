@@ -1,11 +1,35 @@
 import Error from "./Error";
-import { useId } from "react";
+import { useId, useState } from "react";
 import { useRouteLoaderData, useParams } from "react-router-dom";
+
+type Varient = {
+  size: string;
+  stock: number;
+};
 
 const ItemPage = () => {
   const items = useRouteLoaderData("root") as ShopItem[];
   const { id } = useParams();
   const item = items.find((item) => item.id === id);
+
+  const [selectedVarient, setSelectedVarient] = useState<Varient>();
+
+  const sizeChoices =
+    item?.varients.length != 0 &&
+    item?.varients.map((varient) => {
+      return (
+        <button
+          key={useId()}
+          onClick={() => setSelectedVarient(varient)}
+          className={`flex items-center justify-center p-2 border-gray-400 border-2 rounded-md ${
+            varient.stock < 1 && "bg-gray-200"
+          }`}
+          disabled={varient.stock < 1}
+        >
+          {varient.size}
+        </button>
+      );
+    });
 
   if (!item) return <Error />;
 
@@ -14,9 +38,8 @@ const ItemPage = () => {
       <div className="md:w-1/2 lg:w-[700px] overflow-hidden flex-shrink-0">
         <div className="flex w-full">
           {item.images.images.map((image) => {
-            const imageKey = useId();
             return (
-              <div key={imageKey} className="w-full h-full flex-shrink-0">
+              <div key={useId()} className="w-full h-full flex-shrink-0">
                 <img src={image} className="w-full" />
               </div>
             );
@@ -29,19 +52,12 @@ const ItemPage = () => {
         <p className="mb-2">Description</p>
         <p className="text-gray-500 mb-8">{item.description}</p>
         <p className="mb-2">Sizes</p>
-        <div className="grid grid-cols-4 gap-1 mb-8">
-          {item.sizes.length != 0 &&
-            item.sizes.map((size) => {
-              return (
-                <div className="flex items-center justify-center p-2 border-gray-600 border-2 rounded-md cursor-pointer">
-                  {size}
-                </div>
-              );
-            })}
+        <div className="grid grid-cols-4 gap-1 mb-8">{sizeChoices}</div>
+        <div className="flex gap-4">
+          <button className="bg-blue-700 text-white p-2 w-full rounded-md lg:w-72">
+            Add to cart
+          </button>
         </div>
-        <button className="bg-blue-700 text-white p-2 w-full rounded-md lg:w-72">
-          Add to cart
-        </button>
       </div>
     </div>
   );
