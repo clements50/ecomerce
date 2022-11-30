@@ -11,7 +11,14 @@ type Props = {
 
 const Header = ({ navMenuToggle, navMenuActive }: Props) => {
   const [visible] = useScroll();
-  const { toggleCart } = useContext(CartContext);
+  const { toggleCart, cartState } = useContext(CartContext);
+
+  //@ts-ignore
+  const totalCartItem = cartState.reduce(
+    (result: number, current: CartItem) => result + current.qty,
+    0
+  );
+  console.log(cartState);
 
   return (
     <header
@@ -30,7 +37,7 @@ const Header = ({ navMenuToggle, navMenuActive }: Props) => {
           className="text-gray-300 text-xl cursor-pointer"
           onClick={() => toggleCart()}
         >
-          ({0}) Cart
+          ({totalCartItem}) Cart
         </div>
       </div>
     </header>

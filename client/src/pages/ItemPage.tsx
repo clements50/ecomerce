@@ -1,6 +1,7 @@
 import Error from "./Error";
-import { useId, useState } from "react";
+import { useContext, useId, useState } from "react";
 import { useRouteLoaderData, useParams } from "react-router-dom";
+import { CartContext } from "../context/cartContext";
 
 type Varient = {
   size: string;
@@ -11,8 +12,32 @@ const ItemPage = () => {
   const items = useRouteLoaderData("root") as ShopItem[];
   const { id } = useParams();
   const item = items.find((item) => item.id === id);
+  const { dispatch } = useContext(CartContext);
 
-  const [selectedVarient, setSelectedVarient] = useState<Varient>();
+  const [selectedVarient, setSelectedVarient] = useState<Varient | null>();
+  const [error, setError] = useState(false);
+
+  const updateCart = () => {
+    if (!selectedVarient) {
+      return setError(true);
+    }
+    dispatch({
+      type: "ADD_TO_CART",
+      payload: { id: id, size: selectedVarient?.size },
+    });
+
+    setSelectedVarient(null);
+    setError(false);
+  };
+
+  const errorMessage = error && (
+    <p className="text-red-600">please select a size</p>
+  );
+
+  const selectSize = (varient: Varient) => {
+    setSelectedVarient(varient);
+    setError(false);
+  };
 
   const sizeChoices =
     item?.varients.length != 0 &&
@@ -20,7 +45,7 @@ const ItemPage = () => {
       return (
         <button
           key={useId()}
-          onClick={() => setSelectedVarient(varient)}
+          onClick={() => selectSize(varient)}
           className={`flex items-center justify-center p-2 border-gray-400 border-2 rounded-md ${
             varient.stock < 1 && "bg-gray-200"
           }`}
@@ -53,8 +78,12 @@ const ItemPage = () => {
         <p className="text-gray-500 mb-8">{item.description}</p>
         <p className="mb-2">Sizes</p>
         <div className="grid grid-cols-4 gap-1 mb-8">{sizeChoices}</div>
-        <div className="flex gap-4">
-          <button className="bg-blue-700 text-white p-2 w-full rounded-md lg:w-72">
+        <div>
+          {errorMessage}
+          <button
+            onClick={updateCart}
+            className="bg-blue-700 text-white p-2 w-full rounded-md lg:w-72"
+          >
             Add to cart
           </button>
         </div>
