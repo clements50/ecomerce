@@ -1,7 +1,9 @@
 import Error from "./Error";
 import { useContext, useId, useState } from "react";
 import { useRouteLoaderData, useParams } from "react-router-dom";
-import { CartContext } from "../context/cartContext";
+import { CartContext } from "../context/CartContext";
+import { HeaderContext } from "../context/HeaderContext";
+import SizeSelection from "../components/SizeSelection";
 
 type Varient = {
   size: string;
@@ -13,48 +15,17 @@ const ItemPage = () => {
   const { id } = useParams();
   const item = items.find((item) => item.id === id);
   const { dispatch } = useContext(CartContext);
+  const { setVisible } = useContext(HeaderContext);
 
-  const [selectedVarient, setSelectedVarient] = useState<Varient | null>();
-  const [error, setError] = useState(false);
+  const [selectedVarient, setSelectedVarient] = useState<Varient | null>(null);
 
-  const updateCart = () => {
-    if (!selectedVarient) {
-      return setError(true);
-    }
+  const addToCart = () => {
     dispatch({
       type: "ADD_TO_CART",
       payload: { id: id, size: selectedVarient?.size },
     });
-
-    setSelectedVarient(null);
-    setError(false);
+    setVisible(true);
   };
-
-  const errorMessage = error && (
-    <p className="text-red-600">please select a size</p>
-  );
-
-  const selectSize = (varient: Varient) => {
-    setSelectedVarient(varient);
-    setError(false);
-  };
-
-  const sizeChoices =
-    item?.varients.length != 0 &&
-    item?.varients.map((varient) => {
-      return (
-        <button
-          key={useId()}
-          onClick={() => selectSize(varient)}
-          className={`flex items-center justify-center p-2 border-gray-400 border-2 rounded-md ${
-            varient.stock < 1 && "bg-gray-200"
-          }`}
-          disabled={varient.stock < 1}
-        >
-          {varient.size}
-        </button>
-      );
-    });
 
   if (!item) return <Error />;
 
@@ -77,11 +48,15 @@ const ItemPage = () => {
         <p className="mb-2">Description</p>
         <p className="text-gray-500 mb-8">{item.description}</p>
         <p className="mb-2">Sizes</p>
-        <div className="grid grid-cols-4 gap-1 mb-8">{sizeChoices}</div>
+        <SizeSelection
+          item={item}
+          setSelectedVarient={setSelectedVarient}
+          selectedVarient={selectedVarient}
+        />
         <div>
-          {errorMessage}
           <button
-            onClick={updateCart}
+            onClick={addToCart}
+            disabled={!selectedVarient}
             className="bg-blue-700 text-white p-2 w-full rounded-md lg:w-72"
           >
             Add to cart

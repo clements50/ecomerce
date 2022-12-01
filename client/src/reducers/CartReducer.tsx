@@ -1,6 +1,6 @@
 type Action = {
   type: "ADD_TO_CART";
-  payload: CartItem;
+  payload: { id: string; size: string };
 };
 
 export const cartReducer = (state: CartState, action: Action) => {

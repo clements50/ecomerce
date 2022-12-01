@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import Hamburger from "./Hamburger";
 import Nav from "./Nav";
-import { CartContext } from "../context/cartContext";
-import useScroll from "../hooks/Scroll";
+import { CartContext } from "../context/CartContext";
+import { HeaderContext } from "../context/HeaderContext";
 
 type Props = {
   navMenuToggle: () => void;
@@ -10,7 +10,7 @@ type Props = {
 };
 
 const Header = ({ navMenuToggle, navMenuActive }: Props) => {
-  const [visible] = useScroll();
+  const { visible } = useContext(HeaderContext);
   const { toggleCart, cartState } = useContext(CartContext);
 
   //@ts-ignore
@@ -18,7 +18,6 @@ const Header = ({ navMenuToggle, navMenuActive }: Props) => {
     (result: number, current: CartItem) => result + current.qty,
     0
   );
-  console.log(cartState);
 
   return (
     <header

@@ -1,5 +1,4 @@
 import { createContext, useEffect, useReducer, useState } from "react";
-import { json } from "react-router-dom";
 import { cartReducer } from "../reducers/CartReducer";
 
 type Props = {

@@ -2,6 +2,7 @@ import Card from "../components/Card";
 import Carousel from "../components/Carousel";
 import CarouselItem from "../components/CarouselItem";
 import { useRouteLoaderData } from "react-router-dom";
+import { useId } from "react";
 
 const Shop = () => {
   const items: ShopItem[] = useRouteLoaderData("root") as ShopItem[];
@@ -31,7 +32,7 @@ const Shop = () => {
         {items.map((item) => {
           return (
             <Card
-              key={item.id}
+              key={useId()}
               name={item.name}
               thumbnail={item.images.thumbnail}
               price={item.price}
