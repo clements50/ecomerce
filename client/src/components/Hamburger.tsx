@@ -6,25 +6,25 @@ type Props = {
 const Hamburger = ({ navMenuActive, navMenuToggle }: Props) => {
   return (
     <div
-      className={`relative h-7 w-8 cursor-pointer ease-in-out duration-500 delay-100 lg:hidden ${
+      className={`relative h-[12.5px] w-[24px] flex items-center cursor-pointer ease-in-out duration-500 delay-100 lg:hidden ${
         navMenuActive && "rotate-180"
       }`}
       onClick={navMenuToggle}
     >
       <div
-        className={`absolute w-full h-1 bg-gray-300 top-0.5 ease-out duration-500 ${
-          navMenuActive && "top-3 rotate-45"
-        }`}
+        className={`absolute bg-white h-[2.5px] w-full rounded-sm ease-in duration-500 ${
+          !navMenuActive && "top-0"
+        } ${navMenuActive && "rotate-[45deg]"}`}
       ></div>
       <div
-        className={`absolute w-full h-1 bg-gray-300 top-3 ease-out duration-500 ${
+        className={`absolute bg-white h-[2.5px] w-full rounded-sm ease-out duration-500 ${
           navMenuActive && "opacity-0"
         }`}
       ></div>
       <div
-        className={`absolute w-full h-1 bg-gray-300 bottom-0.5 ease-in duration-500 ${
-          navMenuActive && "top-3 -rotate-45"
-        }`}
+        className={`absolute bg-white h-[2.5px] w-full rounded-sm ease-in duration-500 ${
+          !navMenuActive && "bottom-0"
+        } ${navMenuActive && "-rotate-[45deg]"}`}
       ></div>
     </div>
   );
