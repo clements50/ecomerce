@@ -1,12 +1,13 @@
 import React, { useEffect, useReducer, useState } from "react";
-import { reducer } from "../reducers/CarouselReducer";
+import CarouselReducer from "../reducers/CarouselReducer";
+import CarouselButtons from "./CarouselButtons";
 
 type CarouselProps = {
-  children: React.ReactNode;
+  children: React.ReactElement[];
 };
 
 const Carousel = ({ children }: CarouselProps) => {
-  const [{ index }, dispatch] = useReducer(reducer, { index: 0 });
+  const [{ index }, dispatch] = useReducer(CarouselReducer, { index: 0 });
   const [paused, setPaused] = useState(false);
 
   useEffect(() => {
@@ -21,6 +22,12 @@ const Carousel = ({ children }: CarouselProps) => {
         clearInterval(interval);
       }
     };
+  });
+
+  const CarouselItems = children.map((child) => {
+    return (
+      <div className="h-full w-full bg-gray-200 flex-shrink-0">{child}</div>
+    );
   });
 
   return (
@@ -40,20 +47,9 @@ const Carousel = ({ children }: CarouselProps) => {
               : "-translate-x-[200%]"
           }`}
         >
-          {children}
+          {CarouselItems}
         </div>
-        <button
-          className=" text-2xl absolute top-1/2 right-4 bg-gray-100 rounded-full h-8 w-8"
-          onClick={() => dispatch({ type: "increment", payload: children })}
-        >
-          &rarr;
-        </button>
-        <button
-          className="absolute text-2xl left-4 top-1/2 bg-gray-100 rounded-full h-8 w-8 "
-          onClick={() => dispatch({ type: "decrement", payload: children })}
-        >
-          &larr;
-        </button>
+        <CarouselButtons children={children} dispatch={dispatch} />
       </div>
     </>
   );

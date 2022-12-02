@@ -1,12 +1,12 @@
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ShoppingCart from "./components/ShopingCart";
-import data from "./data/data.json";
+import { getAllShopItems } from "./utils/api";
 import { Outlet, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 export const loader = () => {
-  return data;
+  return getAllShopItems();
 };
 
 function App() {
