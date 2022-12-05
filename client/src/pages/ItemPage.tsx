@@ -1,6 +1,6 @@
 import Error from "./Error";
-import { useContext, useId, useState } from "react";
-import { useLoaderData, useParams } from "react-router-dom";
+import { useContext, useState } from "react";
+import { useLoaderData } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 import { HeaderContext } from "../context/HeaderContext";
 import Carousel from "../components/ProductPageCarousel";
@@ -23,11 +23,20 @@ const ItemPage = () => {
   const [selectedVarient, setSelectedVarient] = useState<Varient | null>(null);
 
   const addToCart = () => {
-    dispatch({
-      type: "ADD_TO_CART",
-      payload: { id: item.id, size: selectedVarient?.size },
-    });
-    setVisible(true);
+    if (selectedVarient) {
+      dispatch({
+        type: "ADD_TO_CART",
+        payload: {
+          name: item.name,
+          price: item.price,
+          id: item.id,
+          img: item.images[0],
+          size: selectedVarient.size,
+          stock: selectedVarient.stock,
+        },
+      });
+      setVisible(true);
+    }
   };
 
   if (!item) return <Error />;
@@ -49,7 +58,6 @@ const ItemPage = () => {
         <div>
           <button
             onClick={addToCart}
-            disabled={!selectedVarient}
             className="bg-blue-700 text-white p-2 w-full rounded-md lg:w-72"
           >
             Add to cart

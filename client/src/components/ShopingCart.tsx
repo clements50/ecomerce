@@ -1,8 +1,32 @@
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
+import CartItem from "./CartItem";
+import { v4 as uuid } from "uuid";
 
 const ShoppingCart = () => {
-  const { cartOpen, toggleCart } = useContext(CartContext);
+  const { cartOpen, toggleCart, cartState, totalCartItems } =
+    useContext(CartContext);
+
+  let cartItems: any = (
+    <p className=" text-gray-500 m-auto w-fit">Your Cart Is Empty...</p>
+  );
+
+  if (totalCartItems > 0) {
+    cartItems = cartState.map((item) => {
+      return (
+        <CartItem
+          name={item.name}
+          price={item.price}
+          size={item.size}
+          qty={item.qty}
+          stock={item.stock}
+          id={item.id}
+          img={item.img}
+          key={uuid()}
+        />
+      );
+    });
+  }
 
   return (
     <>
@@ -25,8 +49,12 @@ const ShoppingCart = () => {
             Close
           </div>
         </div>
-        <div className="overflow-scroll flex-grow">
-          <p className=" text-gray-500 m-auto w-fit">Your Cart Is Empty...</p>
+        <div
+          className={`overflow-scroll flex-grow ${
+            totalCartItems > 0 && "border-t-2 border-t-gray-200"
+          }`}
+        >
+          {cartItems}
         </div>
         <div className="mt-8">
           <div className="flex justify-between">

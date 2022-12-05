@@ -1,10 +1,15 @@
 import Card from "../components/Card";
 import Carousel from "../components/HeroCarousel";
-import { useRouteLoaderData } from "react-router-dom";
-import { useId } from "react";
+import { useLoaderData } from "react-router-dom";
+import { getAllShopItems } from "../utils/api";
+import { v4 as uuid } from "uuid";
+
+export const loader = () => {
+  return getAllShopItems();
+};
 
 const Shop = () => {
-  const items: ShopItem[] = useRouteLoaderData("root") as ShopItem[];
+  const items = useLoaderData() as ShopItem[];
 
   return (
     <>
@@ -25,9 +30,9 @@ const Shop = () => {
         {items.map((item) => {
           return (
             <Card
-              key={useId()}
+              key={uuid()}
               name={item.name}
-              thumbnail={item.images.thumbnail}
+              thumbnail={item.images[0]}
               price={item.price}
               id={item.id}
             />

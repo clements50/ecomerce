@@ -1,4 +1,5 @@
-import { useReducer, useId } from "react";
+import { useReducer } from "react";
+import { v4 as uuid } from "uuid";
 import carouselReducer from "../reducers/CarouselReducer";
 import CarouselButtons from "../components/CarouselButtons";
 
@@ -9,9 +10,9 @@ type ProductPageCarousel = {
 const ProductPageCarousel = ({ item }: ProductPageCarousel) => {
   const [{ index }, dispatch] = useReducer(carouselReducer, { index: 0 });
 
-  const carouselItems = item.images.images.map((image) => {
+  const carouselItems = item.images.map((image) => {
     return (
-      <div key={useId()} className="w-full h-full flex-shrink-0">
+      <div key={uuid()} className="w-full h-full flex-shrink-0">
         <img src={image} className="w-full" />
       </div>
     );
@@ -32,9 +33,10 @@ const ProductPageCarousel = ({ item }: ProductPageCarousel) => {
         <div className={`flex w-full ${imagePositions}`}>{carouselItems}</div>
         <CarouselButtons children={carouselItems} dispatch={dispatch} />
         <div className="absolute w-32 h-8 bottom-0 flex gap-2 justify-center items-center">
-          {item.images.images.map((img, i) => {
+          {item.images.map((img, i) => {
             return (
               <div
+                key={uuid()}
                 className={`h-3 w-3 rounded-full border-2 border-gray-500 cursor-pointer ${
                   index === i && "bg-gray-600"
                 }`}
@@ -47,13 +49,13 @@ const ProductPageCarousel = ({ item }: ProductPageCarousel) => {
         </div>
       </div>
       <div className="py-4 w-full gap-2 hidden md:hidden lg:flex">
-        {item.images.images.map((img, i) => {
+        {item.images.map((img, i) => {
           return (
             <div
               onClick={() =>
                 dispatch({ type: "set_index", payload: { index: i } })
               }
-              key={useId()}
+              key={uuid()}
               className={`${
                 index === i && "border-2 border-blue-700"
               } cursor-pointer`}

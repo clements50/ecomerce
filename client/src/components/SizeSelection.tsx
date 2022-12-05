@@ -1,9 +1,9 @@
-import { useId } from "react";
+import { v4 as uuid } from "uuid";
 
 type SizeSelectionProps = {
   item: ShopItem;
-  setSelectedVarient: (varient: Varient) => void;
-  selectedVarient: Varient | null;
+  setSelectedVarient: (varient: { size: string; stock: number }) => void;
+  selectedVarient: { size: string; stock: number } | null;
 };
 
 const SizeSelection = (props: SizeSelectionProps) => {
@@ -14,7 +14,7 @@ const SizeSelection = (props: SizeSelectionProps) => {
     item?.varients.map((varient) => {
       return (
         <button
-          key={useId()}
+          key={uuid()}
           onClick={() => setSelectedVarient(varient)}
           className={`flex items-center justify-center p-2 border-gray-300 border-2 rounded-md ${
             varient.stock < 1 && "bg-gray-100"

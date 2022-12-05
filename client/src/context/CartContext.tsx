@@ -1,15 +1,27 @@
 import { createContext, useEffect, useReducer, useState } from "react";
 import { cartReducer } from "../reducers/CartReducer";
+import { Action } from "../reducers/CartReducer";
 
 type Props = {
   children: JSX.Element;
+};
+
+type CartItem = {
+  name: string;
+  size: string;
+  price: number;
+  qty: number;
+  stock: number;
+  id: string;
+  img: string;
 };
 
 type CartContext = {
   cartOpen: boolean;
   toggleCart: () => void;
   cartState: CartItem[] | [];
-  dispatch: any;
+  dispatch: React.Dispatch<Action>;
+  totalCartItems: number;
 };
 
 let cartItems = localStorage.getItem("CART_STATE")
@@ -27,6 +39,12 @@ const CartContextProvider = ({ children }: Props) => {
     setCartOpen((cartOpen) => !cartOpen);
   };
 
+  //@ts-ignore
+  const totalCartItems = cartState.reduce(
+    (result: number, current: CartItem) => result + current.qty,
+    0
+  );
+
   useEffect(() => {
     localStorage.setItem("CART_STATE", JSON.stringify(cartState));
   }, [cartState]);
@@ -34,7 +52,13 @@ const CartContextProvider = ({ children }: Props) => {
   return (
     <>
       <CartContext.Provider
-        value={{ cartOpen, toggleCart, cartState, dispatch }}
+        value={{
+          cartOpen,
+          toggleCart,
+          dispatch,
+          totalCartItems,
+          cartState,
+        }}
       >
         {children}
       </CartContext.Provider>

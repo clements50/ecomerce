@@ -1,25 +1,27 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App, { loader as Root } from "./App";
-import Shop from "./pages/Shop";
+import App from "./App";
+import "./index.css";
+import ContextProvider from "./context/ContextProvider";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Shop, { loader as ShopLoader } from "./pages/Shop";
 import ItemPage, { loader as ItemPageLoader } from "./pages/ItemPage";
 import Error from "./pages/Error";
-import ContextProvider from "./context/ContextProvider";
-import "./index.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-//fsafj
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    loader: Root,
     errorElement: <Error />,
     id: "root",
     children: [
       {
         index: true,
         element: <Shop />,
+        loader: ShopLoader,
       },
       {
         path: "/shop/items/:id",
@@ -32,8 +34,10 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <ContextProvider>
-      <RouterProvider router={router} />
-    </ContextProvider>
+    <QueryClientProvider client={queryClient}>
+      <ContextProvider>
+        <RouterProvider router={router} />
+      </ContextProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 );

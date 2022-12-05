@@ -1,6 +1,7 @@
 import React, { useEffect, useReducer, useState } from "react";
 import CarouselReducer from "../reducers/CarouselReducer";
 import CarouselButtons from "./CarouselButtons";
+import { v4 as uuid } from "uuid";
 
 type CarouselProps = {
   children: React.ReactElement[];
@@ -26,7 +27,9 @@ const Carousel = ({ children }: CarouselProps) => {
 
   const CarouselItems = children.map((child) => {
     return (
-      <div className="h-full w-full bg-gray-200 flex-shrink-0">{child}</div>
+      <div key={uuid()} className="h-full w-full bg-gray-200 flex-shrink-0">
+        {child}
+      </div>
     );
   });
 
