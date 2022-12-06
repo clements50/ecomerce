@@ -74,9 +74,17 @@ export const cartReducer = (state: CartItem[], action: Action) => {
       }
     }
     case "DELETE_ITEM": {
-      const updatedCart = state.filter(
-        (item) =>
-          item.id != action.payload.id && item.size != action.payload.size
+      const markItemToBeRemoved = state.map((item) => {
+        if (
+          item.id === action.payload.id &&
+          item.size === action.payload.size
+        ) {
+          return { ...item, id: "to be delete" };
+        }
+        return item;
+      });
+      const updatedCart = markItemToBeRemoved.filter(
+        (item) => item.id != "to be delete"
       );
       return updatedCart;
     }

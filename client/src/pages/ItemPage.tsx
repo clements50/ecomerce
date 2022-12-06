@@ -53,7 +53,7 @@ const ItemPage = () => {
   );
 
   const maxQuantityInCartMessage = (
-    <div className="bg-white fixed z-10 w-full h-32  flex flex-col justify-between bottom-0">
+    <div className="bg-white fixed z-10 w-full h-32  flex flex-col justify-between bottom-0 md:w-80 md:top-6 md:right-24 md:shadow-gray-400 md:shadow-lg lg:w-80 lg:top-6 lg:right-24 lg:shadow-gray-400 lg:shadow-lg">
       <p className=" p-2">
         You have hit the max allowed quantity for this item in your cart{" "}
       </p>
@@ -69,7 +69,7 @@ const ItemPage = () => {
   if (!item) return <Error />;
 
   return (
-    <div className="md:flex lg:flex lg:gap-4">
+    <div className="md:flex lg:flex lg:gap-4 relative">
       <Carousel item={item} />
       <div className="px-4 pt-8 lg:w-[900px]">
         <p className="font-semibold text-2xl">{name}</p>
