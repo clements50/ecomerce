@@ -22,6 +22,8 @@ type CartContext = {
   cartState: CartItem[] | [];
   dispatch: React.Dispatch<Action>;
   totalCartItems: number;
+  cartTotal: number;
+  cartTotalTaxes: number;
 };
 
 let cartItems = localStorage.getItem("CART_STATE")
@@ -39,11 +41,17 @@ const CartContextProvider = ({ children }: Props) => {
     setCartOpen((cartOpen) => !cartOpen);
   };
 
-  //@ts-ignore
   const totalCartItems = cartState.reduce(
     (result: number, current: CartItem) => result + current.qty,
     0
   );
+
+  const cartTotal = cartState.reduce(
+    (acc, cur) => acc + cur.price * cur.qty,
+    0
+  );
+
+  const cartTotalTaxes = (8.25 / 100) * cartTotal;
 
   useEffect(() => {
     localStorage.setItem("CART_STATE", JSON.stringify(cartState));
@@ -58,6 +66,8 @@ const CartContextProvider = ({ children }: Props) => {
           dispatch,
           totalCartItems,
           cartState,
+          cartTotal,
+          cartTotalTaxes,
         }}
       >
         {children}

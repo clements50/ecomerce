@@ -2,10 +2,13 @@ import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import CartItem from "./CartItem";
 import { v4 as uuid } from "uuid";
+import { useNavigate } from "react-router-dom";
 
 const ShoppingCart = () => {
-  const { cartOpen, toggleCart, cartState, totalCartItems } =
+  const { cartOpen, toggleCart, cartState, totalCartItems, cartTotal } =
     useContext(CartContext);
+
+  const navigate = useNavigate();
 
   let cartItems: any = (
     <p className=" text-gray-500 m-auto w-fit">Your Cart Is Empty...</p>
@@ -27,6 +30,13 @@ const ShoppingCart = () => {
       );
     });
   }
+
+  const checkoutClickHandler = () => {
+    if (totalCartItems > 0) {
+      navigate("checkout/shipping");
+      toggleCart();
+    }
+  };
 
   return (
     <>
@@ -59,12 +69,15 @@ const ShoppingCart = () => {
         <div className="mt-8">
           <div className="flex justify-between">
             <p className="text-lg">Subtotal</p>
-            <p className="text-lg">$262.00</p>
+            <p className="text-lg">${cartTotal}</p>
           </div>
           <p className="text-gray-500 mb-4">
             Shipping and taxes calculated at <br /> checkout
           </p>
-          <button className="bg-blue-700 text-white p-3 w-full rounded-md mb-5">
+          <button
+            onClick={() => checkoutClickHandler()}
+            className="bg-blue-700 text-white p-3 w-full rounded-md mb-5"
+          >
             Checkout
           </button>
           <div

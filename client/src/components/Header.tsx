@@ -4,6 +4,7 @@ import Nav from "./Nav";
 import { CartContext } from "../context/CartContext";
 import { HeaderContext } from "../context/HeaderContext";
 import { BsBagFill } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   navMenuToggle: () => void;
@@ -13,6 +14,7 @@ type Props = {
 const Header = ({ navMenuToggle, navMenuActive }: Props) => {
   const { visible } = useContext(HeaderContext);
   const { toggleCart, totalCartItems } = useContext(CartContext);
+  const navigate = useNavigate();
 
   return (
     <header
@@ -25,7 +27,12 @@ const Header = ({ navMenuToggle, navMenuActive }: Props) => {
           navMenuActive={navMenuActive}
           navMenuToggle={navMenuToggle}
         />
-        <p className="text-gray-300 text-xl">Logo</p>
+        <p
+          className="text-gray-300 text-xl cursor-pointer"
+          onClick={() => navigate("/")}
+        >
+          Logo
+        </p>
         <Nav navMenuActive={navMenuActive} navMenuToggle={navMenuToggle} />
         <div
           className="text-gray-300 text-xl cursor-pointer"
