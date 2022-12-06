@@ -1,10 +1,12 @@
+type Varient = { size: string; stock: number };
+
 type ShopItem = {
   name: string;
   brand: string;
   category: string;
   price: number;
   description: string;
-  varients: { size: string; stock: number }[];
+  varients: Varient[];
   stock: string;
   images: string[];
   id: string;

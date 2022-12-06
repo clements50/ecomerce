@@ -33,9 +33,14 @@ const Header = ({ navMenuToggle, navMenuActive }: Props) => {
         >
           <div className="relative h-fit">
             <BsBagFill className="text-2xl" />
-            <div className="absolute flex items-center justify-center right-4 -bottom-1 bg-red-700 text-sm p-2 rounded-full w-3 h-3">
-              {totalCartItems}
-            </div>
+            {totalCartItems > 0 && (
+              <div
+                className="absolute flex items-center justify-center right-4 -bottom-1 bg-red-700 text-sm p-2 
+                rounded-full w-3 h-3"
+              >
+                {totalCartItems}
+              </div>
+            )}
           </div>
         </div>
       </div>

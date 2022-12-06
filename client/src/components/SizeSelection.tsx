@@ -1,17 +1,17 @@
 import { v4 as uuid } from "uuid";
 
 type SizeSelectionProps = {
-  item: ShopItem;
+  varients: Varient[];
   setSelectedVarient: (varient: { size: string; stock: number }) => void;
   selectedVarient: { size: string; stock: number } | null;
 };
 
 const SizeSelection = (props: SizeSelectionProps) => {
-  const { item, setSelectedVarient, selectedVarient } = props;
+  const { varients, setSelectedVarient, selectedVarient } = props;
 
   const sizeChoices =
-    item?.varients.length != 0 &&
-    item?.varients.map((varient) => {
+    varients.length != 0 &&
+    varients.map((varient) => {
       return (
         <button
           key={uuid()}
