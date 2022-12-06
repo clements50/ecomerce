@@ -6,7 +6,6 @@ import { HeaderContext } from "../context/HeaderContext";
 import Carousel from "../components/ProductPageCarousel";
 import SizeSelection from "../components/SizeSelection";
 import { getShopItem } from "../utils/api";
-import CartItem from "../components/CartItem";
 
 type Varient = {
   size: string;
