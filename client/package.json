@@ -11,7 +11,9 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.6",
     "@tanstack/react-query": "^4.19.1",
+    "@tanstack/react-query-devtools": "^4.19.1",
     "autoprefixer": "^10.4.13",
+    "country-state-city": "^3.1.2",
     "postcss": "^8.4.18",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

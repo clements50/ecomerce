@@ -9,6 +9,7 @@ import ItemPage, { loader as ItemPageLoader } from "./pages/ItemPage";
 import ShippingPage from "./pages/ShippingPage";
 import Error from "./pages/Error";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const queryClient = new QueryClient();
 
@@ -43,6 +44,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       <ContextProvider>
         <RouterProvider router={router} />
       </ContextProvider>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   </React.StrictMode>
 );
